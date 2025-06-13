@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philip Sulewski - NeuroAI Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+        
+        :root {
+            --bg-primary: #f8f8f2;
+            --bg-secondary: #44475a;
+            --text-primary: #282a36;
+            --text-secondary: #6272a4;
+            --accent-purple: #bd93f9;
+            --accent-cyan: #8be9fd;
+            --accent-green: #50fa7b;
+            --accent-orange: #ffb86c;
+            --border-color: #6272a4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header with subtle retro elements */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 30px;
+            border: 2px dashed var(--border-color);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #f0f0eb 100%);
+            position: relative;
+        }
+        
+        .header::before {
+            content: "●";
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: var(--accent-green);
+            font-size: 12px;
+            animation: blink 2s infinite;
+        }
+        
+        .header::after {
+            content: "EST. 2021";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .header h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.5em;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .tagline {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+        
+        .accent-text {
+            color: var(--accent-purple);
+        }
+        
+        /* Navigation */
+        .nav {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .nav-links {
+            display: inline-flex;
+            gap: 30px;
+            list-style: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+        
+        .nav-links a::before {
+            content: "> ";
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+        
+        /* Content sections */
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-left: 3px solid var(--accent-purple);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .section h2 {
+            font-family: 'IBM Pler Mono', monospace;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .section h2::before {
+            content: "# ";
+            color: var(--accent-purple);
+        }
+        
+        /* About section with terminal-like styling */
+        .about-content {
+            background: var(--bg-secondary);
+            color: var(--bg-primary);
+            padding: 20px;
+            border-radius: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9em;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .about-content::before {
+            content: "philip@neurobiopsychology:~$ cat about.txt";
+            display: block;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+        
+        .cursor {
+            display: inline-block;
+            background: var(--accent-green);
+            width: 8px;
+            height: 16px;
+            animation: blink 1s infinite;
+        }
+        
+        /* Research items */
+        .research-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+        
+        .research-item:hover {
+            border-color: var(--accent-cyan);
+            transform: translateX(5px);
+        }
+        
+        .research-item h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-purple);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .research-item h3::before {
+            content: "▸ ";
+            color: var(--accent-orange);
+        }
+        
+        /* Publications */
+        .publication {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 2px solid var(--accent-green);
+            background: rgba(80, 250, 123, 0.05);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85em;
+        }
+        
+        .publication-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .publication-details {
+            color: var(--text-secondary);
+        }
+        
+        /* Contact section */
+        .contact-info {
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--bg-secondary);
+            color: var(--bg-primary);
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        .contact-info::before {
+            content: "philip@neurobiopsychology:~$ cat contact.txt";
+            display: block;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+        }
+        
+        .contact-item {
+            margin-bottom: 8px;
+        }
+        
+        .contact-item::before {
+            content: "→ ";
+            color: var(--accent-orange);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8em;
+            color: var(--text-secondary);
+        }
+        
+        .footer::before {
+            content: "/* ";
+        }
+        
+        .footer::after {
+            content: " */";
+        }
+        
+        /* Status indicator */
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7em;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        .status::before {
+            content: "● ";
+            color: var(--accent-green);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .status {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Philip Sulewski</h1>
+            <div class="tagline">
+                PhD Student • <span class="accent-text">NeuroAI Research</span> • University of Osnabrück
+            </div>
+        </header>
+
+        <nav class="nav">
+            <ul class="nav-links">
+                <li><a href="#about">about</a></li>
+                <li><a href="#research">research</a></li>
+                <li><a href="#publications">publications</a></li>
+                <li><a href="#contact">contact</a></li>
+            </ul>
+        </nav>
+
+        <section id="about" class="section">
+            <h2>about</h2>
+            <p>I'm a PhD student at the University of Osnabrück, working at the intersection of neuroscience and artificial intelligence. My research focuses on understanding how the human brain solves the exploration-exploitation dilemma in visual information sampling.</p>
+            
+            <div class="about-content">
+                Currently investigating neural mechanisms of visual attention using MEG, eye-tracking, and computational modeling. Previously worked on individual differences in visual object representations and brain-computer interfaces.
+                <span class="cursor"></span>
+            </div>
+        </section>
+
+        <section id="research" class="section">
+            <h2>research_areas</h2>
+            
+            <div class="research-item">
+                <h3>Visual Attention & Exploration</h3>
+                <p>How does the brain decide where to look next? Investigating the neural dynamics of visual information sampling using MEG and eye-tracking.</p>
+            </div>
+            
+            <div class="research-item">
+                <h3>Individual Neural Variability</h3>
+                <p>Understanding spatiotemporal differences in neural representations during visual object recognition across individuals.</p>
+            </div>
+            
+            <div class="research-item">
+                <h3>Brain-Computer Interfaces</h3>
+                <p>Exploring attention, metacognition, and perceptual decision-making through neural feedback systems.</p>
+            </div>
+            
+            <div class="research-item">
+                <h3>Computational Modeling</h3>
+                <p>Building models that bridge the gap between neural mechanisms and cognitive behavior.</p>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <h2>publications</h2>
+            
+            <div class="publication">
+                <div class="publication-title">Two types of representational echoes in the human visual system</div>
+                <div class="publication-details">Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T.C.<br>European Conference for Visual Perception (ECVP), 2022</div>
+            </div>
+            
+            <div class="publication">
+                <div class="publication-title">Analyses of the neural population dynamics during human object vision</div>
+                <div class="publication-details">Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T.C.<br>Neuromatch 4.0, 2021</div>
+            </div>
+            
+            <div class="publication">
+                <div class="publication-title">Neurofeedback-induced choice blindness reveals integration of metacognition</div>
+                <div class="publication-details">Rebouillat, B., Sulewski, P. & Kouider, S.<br>23rd Annual Meeting of ASSC, 2019</div>
+            </div>
+            
+            <div class="publication">
+                <div class="publication-title">Tracing individual variability of visual object representations</div>
+                <div class="publication-details">Master Thesis, University of Göttingen, 2020<br>Grade: 1.0 (with distinction)</div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>contact</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">email: psulewski@uos.de</div>
+                <div class="contact-item">location: Osnabrück, Germany</div>
+                <div class="contact-item">office: Neurobiopsychology Lab</div>
+                <div class="contact-item">twitter: @PhilipSulewski</div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Built with semantic HTML and a touch of 90s nostalgia • Last updated: 2025
+        </footer>
+    </div>
+
+    <div class="status">
+        ONLINE
+    </div>
+
+    <script>
+        // Subtle interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Terminal typing effect for about section
+            const aboutContent = document.querySelector('.about-content');
+            const cursor = document.querySelector('.cursor');
+            
+            // Add some interactive hover effects
+            document.querySelectorAll('.research-item, .publication').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.borderColor = 'var(--accent-cyan)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.borderColor = 'var(--border-color)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+yaml# GitHub Pages configuration
+title: Philip Sulewski - NeuroAI Research
+description: PhD Student investigating neural mechanisms of visual attention
+author: Philip Sulewski
+email: psulewski@uos.de
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+# Include files
+include:
+  - content/
+
+# GitHub Pages specific settings
+github:
+  repository_url: https://github.com/your-username/your-username.github.io
+
+# SEO settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag

@@ -4,11 +4,11 @@
 
 - **Predictive remapping and allocentric coding as consequences of energy efficiency in recurrent neural network models of active vision**
   Nortmann, T., Sulewski, P., & Kietzmann, T. C. (2025).
-  *bioRxiv*. https://doi.org/10.1101/2025.05.xx
+  *bioRxiv*. https://doi.org/10.1101/2025.05.22.655555
 
 - **Saccade onset, not fixation onset, best explains early responses across the human visual cortex during naturalistic vision**
   Amme, C., Sulewski, P., Spaak, E., Hebart, M. N., König, P., & Kietzmann, T. C. (2024).
-  *bioRxiv*. https://doi.org/10.1101/2024.10.xx
+  *bioRxiv*. https://doi.org/10.1101/2024.10.25.620167
 
 ## Conference Papers
 
@@ -26,11 +26,11 @@
 
 - **Saccade onset, not fixation onset, best explains early responses across the human visual cortex during naturalistic vision**
   Amme, C., Sulewski, P., Spaak, E., Hebart, M. N., König, P., & Kietzmann, T. C. (2025).
-  Paper presented at the European Conference on Visual Perception (ECVP), Aberdeen, Scotland.
+  Poster presented at the European Conference on Visual Perception (ECVP), Aberdeen, Scotland.
 
 - **Gazing into memory: Active vision is timed to stabilise cortical representations for fixation-based memory encoding**
   Sulewski, P., Amme, C., Hebart, M., König, P., & Kietzmann, T. C. (2024).
-  Paper presented at the European Conference on Visual Perception (ECVP), Aberdeen, Scotland, and NEAT 24, Osnabrück, Germany.
+  Poster presented at the European Conference on Visual Perception (ECVP), Aberdeen, Scotland, and NEAT 24, Osnabrück, Germany.
 
 - **The Active Visual Semantics Dataset - Understanding visual intelligence in action**
   Sulewski, P., Amme, C., Hebart, M., König, P., & Kietzmann, T. C. (2023).
@@ -38,7 +38,7 @@
 
 - **Two types of representational echoes in the human visual system**
   Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T. C. (2022).
-  Paper presented at the European Conference on Visual Perception (ECVP), Nijmegen, Netherlands.
+  Poster presented at the European Conference on Visual Perception (ECVP), Nijmegen, Netherlands.
 
 - **Analyses of the neural population dynamics during human object vision reveal two types of representational echoes that reverberate across the visual system**
   Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T. C. (2021).
@@ -46,7 +46,7 @@
 
 - **Neurofeedback-induced choice blindness reveals the integration of metacognition and external cues**
   Rebouillat, B., Sulewski, P., & Kouider, S. (2019).
-  Paper presented at the 23rd Annual Meeting of ASSC, London, Ontario, Canada.
+  Poster presented at the 23rd Annual Meeting of ASSC, London, Ontario, Canada.
 
 ## Invited Talks
 

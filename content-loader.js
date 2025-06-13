@@ -103,21 +103,13 @@ class ContentManager {
                 </div>
             `,
             publications: `
-                <div class="publication">
-                    <div class="publication-title">Two types of representational echoes in the human visual system</div>
-                    <div class="publication-details">Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T.C.<br>European Conference for Visual Perception (ECVP), 2022</div>
-                </div>
-                <div class="publication">
-                    <div class="publication-title">Analyses of the neural population dynamics during human object vision</div>
-                    <div class="publication-details">Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T.C.<br>Neuromatch 4.0, 2021</div>
-                </div>
-                <div class="publication">
-                    <div class="publication-title">Neurofeedback-induced choice blindness reveals integration of metacognition</div>
-                    <div class="publication-details">Rebouillat, B., Sulewski, P. & Kouider, S.<br>23rd Annual Meeting of ASSC, 2019</div>
-                </div>
-                <div class="publication">
-                    <div class="publication-title">Tracing individual variability of visual object representations</div>
-                    <div class="publication-details">Master Thesis, University of Göttingen, 2020<br>Grade: 1.0 (with distinction)</div>
+                <div class="publication-category">
+                    <h3 class="publication-category-title">Recent Publications</h3>
+                    <div class="publication paper">
+                        <div class="publication-title">Two types of representational echoes in the human visual system</div>
+                        <div class="publication-details">Sulewski, P., König, P., Kriegeskorte, N., & Kietzmann, T.C.<br>European Conference for Visual Perception (ECVP), 2022</div>
+                        <span class="publication-type">paper</span>
+                    </div>
                 </div>
             `,
             contact: `
@@ -162,35 +154,137 @@ class ContentManager {
     }
 
     formatPublicationsContent(content) {
-        // Parse publications and format them
-        const sections = content.split('<h2>').filter(section => section.trim());
-        let formattedPubs = '';
-        
-        sections.forEach(section => {
-            const lines = section.split('\n').filter(line => line.trim());
-            const sectionTitle = lines[0].replace('</h2>', '');
+        // We need to work with the original markdown, not the converted HTML
+        // Let's fetch the raw markdown again for publications
+        return this.parsePublicationsFromMarkdown();
+    }
+
+    async parsePublicationsFromMarkdown() {
+        try {
+            // Fetch the raw markdown file directly
+            const response = await fetch('./content/publications.md');
+            const rawMarkdown = await response.text();
             
-            lines.slice(1).forEach(line => {
-                if (line.startsWith('<li>')) {
-                    const pubContent = line.replace('<li>', '').replace('</li>', '');
-                    const parts = pubContent.split('\n').filter(p => p.trim());
-                    
-                    if (parts.length >= 2) {
-                        const title = parts[0].replace(/^\*\*|\*\*$/g, '');
-                        const details = parts.slice(1).join('<br>');
-                        
-                        formattedPubs += `
-                            <div class="publication">
-                                <div class="publication-title">${title}</div>
-                                <div class="publication-details">${details}</div>
-                            </div>
-                        `;
+            const lines = rawMarkdown.split('\n');
+            let formattedHTML = '';
+            let currentSection = null;
+            let currentPublication = null;
+            let publicationLines = [];
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                
+                // Check for section headers (## Section Name)
+                if (line.startsWith('## ')) {
+                    // Save previous publication if exists
+                    if (currentPublication && publicationLines.length > 0) {
+                        formattedHTML += this.formatSinglePublication(
+                            currentPublication, 
+                            publicationLines.join(' '), 
+                            currentSection
+                        );
                     }
+                    
+                    // Start new section
+                    currentSection = line.replace('## ', '').trim();
+                    // Rename "Conference Papers" to "Conference Contributions"
+                    if (currentSection === 'Conference Papers') {
+                        currentSection = 'Conference Contributions';
+                    }
+                    
+                    formattedHTML += `<div class="publication-category">`;
+                    formattedHTML += `<h3 class="publication-category-title">${currentSection}</h3>`;
+                    currentPublication = null;
+                    publicationLines = [];
+                    continue;
                 }
-            });
-        });
+                
+                // Check for publication start (- **Title**)
+                const pubMatch = line.match(/^- \*\*(.+?)\*\*/);
+                if (pubMatch) {
+                    // Save previous publication if exists
+                    if (currentPublication && publicationLines.length > 0) {
+                        formattedHTML += this.formatSinglePublication(
+                            currentPublication, 
+                            publicationLines.join(' '), 
+                            currentSection
+                        );
+                    }
+                    
+                    // Start new publication
+                    currentPublication = pubMatch[1];
+                    publicationLines = [];
+                    
+                    // Get the rest of the line after the title
+                    const restOfLine = line.replace(/^- \*\*.+?\*\*\s*/, '');
+                    if (restOfLine) {
+                        publicationLines.push(restOfLine);
+                    }
+                    continue;
+                }
+                
+                // Add content to current publication (lines that don't start with - or ##)
+                if (currentPublication && line && !line.startsWith('- ') && !line.startsWith('## ') && !line.startsWith('# ')) {
+                    publicationLines.push(line);
+                }
+            }
+            
+            // Don't forget the last publication
+            if (currentPublication && publicationLines.length > 0) {
+                formattedHTML += this.formatSinglePublication(
+                    currentPublication, 
+                    publicationLines.join(' '), 
+                    currentSection
+                );
+            }
+            
+            // Close the last section
+            if (currentSection) {
+                formattedHTML += `</div>`;
+            }
+            
+            return formattedHTML;
+            
+        } catch (error) {
+            console.warn('Failed to parse publications from markdown:', error);
+            return this.getFallbackContent('publications');
+        }
+    }
+
+    formatSinglePublication(title, details, category) {
+        // Clean up the details
+        let cleanDetails = details
+            .replace(/^\s*-?\s*/, '') // Remove leading dashes/spaces
+            .replace(/\*([^*]+)\*/g, '<em>$1</em>') // Convert *italic* to <em>
+            .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="pub-link">$1</a>') // Make URLs clickable
+            .replace(/\s+/g, ' ') // Normalize spaces
+            .trim();
         
-        return formattedPubs || this.getFallbackContent('publications');
+        // Determine publication type based on category and content
+        let pubType = 'paper';
+        const categoryLower = category.toLowerCase();
+        const detailsLower = cleanDetails.toLowerCase();
+        
+        if (categoryLower.includes('preprint')) {
+            pubType = 'preprint';
+        } else if (categoryLower.includes('conference') || detailsLower.includes('conference') || 
+                   detailsLower.includes('presented at') || detailsLower.includes('ecvp') || 
+                   detailsLower.includes('poster') || detailsLower.includes('ccn') || 
+                   detailsLower.includes('assc') || detailsLower.includes('neuromatch')) {
+            pubType = 'conference';
+        } else if (categoryLower.includes('thesis') || categoryLower.includes('theses')) {
+            pubType = 'thesis';
+        } else if (categoryLower.includes('talk') || categoryLower.includes('invited')) {
+            pubType = 'talk';
+        }
+        
+        return `
+            <div class="publication ${pubType}">
+                <div class="publication-title">${title}</div>
+                <div class="publication-details">${cleanDetails}</div>
+                <span class="publication-type">${pubType}</span>
+            </div>
+        `;
     }
 
     formatContactContent(content) {
@@ -212,10 +306,10 @@ class ContentManager {
         const promises = sections.map(section => this.loadContent(section));
         await Promise.all(promises);
         
-        this.updateDOM();
+        await this.updateDOM();
     }
 
-    updateDOM() {
+    async updateDOM() {
         // Update header from config
         if (this.config.header) {
             const titleElement = document.querySelector('.header h1');
@@ -238,7 +332,7 @@ class ContentManager {
         }
 
         // Update content sections with special formatting
-        Object.keys(this.content).forEach(section => {
+        for (const section of Object.keys(this.content)) {
             const element = document.querySelector(`#${section} .content`);
             if (element) {
                 let formattedContent = this.content[section];
@@ -252,7 +346,7 @@ class ContentManager {
                         formattedContent = this.formatResearchContent(formattedContent);
                         break;
                     case 'publications':
-                        formattedContent = this.formatPublicationsContent(formattedContent);
+                        formattedContent = await this.formatPublicationsContent(formattedContent);
                         break;
                     case 'contact':
                         formattedContent = this.formatContactContent(formattedContent);
@@ -261,7 +355,7 @@ class ContentManager {
                 
                 element.innerHTML = formattedContent;
             }
-        });
+        }
     }
 }
 

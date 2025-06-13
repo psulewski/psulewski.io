@@ -236,6 +236,178 @@
             margin-left: 10px;
             text-transform: uppercase;
         }
+
+        /* Enhanced Publications Styling */
+
+        /* Publication categories */
+        .publication-category {
+            margin-bottom: 40px;
+        }
+
+        .publication-category-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2em;
+            color: var(--accent-purple);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent-purple);
+            position: relative;
+        }
+
+        .publication-category-title::before {
+            content: "▸ ";
+            color: var(--accent-orange);
+            font-size: 0.9em;
+        }
+
+        /* Individual publications - more compact and modern */
+        .publication {
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 3px solid var(--accent-green);
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .publication:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--accent-cyan);
+        }
+
+        .publication-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 1em;
+            line-height: 1.4;
+        }
+
+        .publication-details {
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .publication-details em {
+            color: var(--accent-purple);
+            font-style: italic;
+        }
+
+        .pub-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8em;
+        }
+
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Publication type badges */
+        .publication-type {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65em;
+            padding: 3px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        /* Different colors for different publication types */
+        .publication.preprint .publication-type {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .publication.paper .publication-type {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .publication.thesis .publication-type {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        .publication.talk .publication-type {
+            background: var(--accent-cyan);
+            color: var(--text-primary);
+        }
+
+        /* Different border colors for publication types */
+        .publication.preprint {
+            border-left-color: var(--accent-orange);
+        }
+
+        .publication.paper {
+            border-left-color: var(--accent-green);
+        }
+
+        .publication.thesis {
+            border-left-color: var(--accent-purple);
+        }
+
+        .publication.talk {
+            border-left-color: var(--accent-cyan);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .publication {
+                padding: 12px 16px;
+                margin-bottom: 16px;
+            }
+            
+            .publication-title {
+                font-size: 0.95em;
+                padding-right: 60px; /* Make room for type badge */
+            }
+            
+            .publication-details {
+                font-size: 0.8em;
+            }
+            
+            .publication-type {
+                font-size: 0.6em;
+                padding: 2px 6px;
+            }
+        }
+
+        /* Optional: Add a subtle animation when publications load */
+        .publication {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .publication:nth-child(1) { animation-delay: 0.1s; }
+        .publication:nth-child(2) { animation-delay: 0.2s; }
+        .publication:nth-child(3) { animation-delay: 0.3s; }
+        .publication:nth-child(4) { animation-delay: 0.4s; }
+        .publication:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+                
         
         /* Contact section */
         .contact-info {

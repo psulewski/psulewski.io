@@ -21,7 +21,7 @@ include:
 
 # GitHub Pages specific settings
 github:
-  repository_url: https://github.com/your-username/your-username.github.io
+  repository_url: https://github.com/psulewski/psulewski.github.io
 
 # SEO settings
 plugins:

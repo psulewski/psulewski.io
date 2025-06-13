@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philip Sulewski - NeuroAI Research</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
         
         :root {
             --bg-primary: #f8f8f2;
@@ -17,6 +17,22 @@
             --accent-green: #50fa7b;
             --accent-orange: #ffb86c;
             --border-color: #6272a4;
+            
+            /* Improved typography scale */
+            --font-size-xs: 0.75rem;    /* 12px */
+            --font-size-sm: 0.875rem;   /* 14px */
+            --font-size-base: 1rem;     /* 16px */
+            --font-size-lg: 1.125rem;   /* 18px */
+            --font-size-xl: 1.25rem;    /* 20px */
+            --font-size-2xl: 1.5rem;    /* 24px */
+            --font-size-3xl: 1.875rem;  /* 30px */
+            --font-size-4xl: 2.25rem;   /* 36px */
+            
+            /* Line heights */
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+            --line-height-loose: 1.75;
         }
         
         * {
@@ -29,8 +45,9 @@
             font-family: 'IBM Plex Sans', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            font-size: 16px;
+            font-size: var(--font-size-lg); /* Increased from 16px to 18px for better readability */
+            line-height: var(--line-height-relaxed);
+            font-weight: 400;
         }
         
         .container {
@@ -39,7 +56,7 @@
             padding: 40px 20px;
         }
         
-        /* Header with subtle retro elements */
+        /* Header with improved typography */
         .header {
             text-align: center;
             margin-bottom: 60px;
@@ -55,7 +72,7 @@
             top: 15px;
             left: 20px;
             color: var(--accent-green);
-            font-size: 12px;
+            font-size: var(--font-size-xs);
             animation: blink 2s infinite;
         }
         
@@ -65,9 +82,10 @@
             top: 15px;
             right: 20px;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
+            font-size: var(--font-size-xs);
             color: var(--text-secondary);
             letter-spacing: 1px;
+            font-weight: 500;
         }
         
         @keyframes blink {
@@ -77,24 +95,28 @@
         
         .header h1 {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 2.5em;
-            font-weight: 500;
-            margin-bottom: 10px;
+            font-size: var(--font-size-4xl); /* More proportional to content */
+            font-weight: 600; /* Slightly bolder */
+            margin-bottom: 12px;
             color: var(--text-primary);
+            line-height: var(--line-height-tight);
         }
         
         .tagline {
             font-family: 'IBM Plex Mono', monospace;
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: var(--font-size-base); /* Increased from 0.9em */
             letter-spacing: 0.5px;
+            line-height: var(--line-height-normal);
+            font-weight: 400;
         }
         
         .accent-text {
             color: var(--accent-purple);
+            font-weight: 500;
         }
         
-        /* Navigation */
+        /* Navigation with improved readability */
         .nav {
             margin-bottom: 40px;
             text-align: center;
@@ -105,13 +127,14 @@
             gap: 30px;
             list-style: none;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9em;
+            font-size: var(--font-size-base); /* Increased from 0.9em */
+            font-weight: 500;
         }
         
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 10px 18px; /* Increased padding for better touch targets */
             border: 1px solid transparent;
             transition: all 0.2s ease;
             position: relative;
@@ -132,7 +155,7 @@
             opacity: 1;
         }
         
-        /* Content sections */
+        /* Content sections with improved typography */
         .section {
             margin-bottom: 50px;
             padding: 30px;
@@ -142,10 +165,12 @@
         
         .section h2 {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.4em;
-            margin-bottom: 20px;
+            font-size: var(--font-size-2xl); /* More prominent section headers */
+            font-weight: 600;
+            margin-bottom: 24px; /* Increased spacing */
             color: var(--text-primary);
             position: relative;
+            line-height: var(--line-height-tight);
         }
         
         .section h2::before {
@@ -153,23 +178,37 @@
             color: var(--accent-purple);
         }
         
-        /* About section with terminal-like styling */
+        /* Improved paragraph spacing and readability */
+        .section p {
+            margin-bottom: 16px;
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* About section with better typography */
         .about-content {
             background: var(--bg-secondary);
             color: var(--bg-primary);
-            padding: 20px;
-            border-radius: 4px;
+            padding: 24px; /* Increased padding */
+            border-radius: 6px;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9em;
-            margin-top: 15px;
+            font-size: var(--font-size-base); /* Increased from 0.9em */
+            line-height: var(--line-height-relaxed);
+            margin-top: 18px;
             position: relative;
+            font-weight: 400;
         }
         
         .about-content::before {
             content: "philip@neurobiopsychology:~$ cat about.txt";
             display: block;
             color: var(--accent-green);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
         }
         
         .cursor {
@@ -180,13 +219,14 @@
             animation: blink 1s infinite;
         }
         
-        /* Research items */
+        /* Research items with improved hierarchy */
         .research-item {
-            margin-bottom: 25px;
-            padding: 20px;
+            margin-bottom: 28px; /* Increased spacing */
+            padding: 24px; /* Increased padding */
             border: 1px solid var(--border-color);
             background: rgba(255, 255, 255, 0.5);
             transition: all 0.2s ease;
+            border-radius: 4px;
         }
         
         .research-item:hover {
@@ -197,8 +237,10 @@
         .research-item h3 {
             font-family: 'IBM Plex Mono', monospace;
             color: var(--accent-purple);
-            font-size: 1.1em;
-            margin-bottom: 10px;
+            font-size: var(--font-size-xl); /* Increased from 1.1em */
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: var(--line-height-tight);
         }
         
         .research-item h3::before {
@@ -206,52 +248,27 @@
             color: var(--accent-orange);
         }
         
-        /* Publications */
-        .publication {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-left: 2px solid var(--accent-green);
-            background: rgba(80, 250, 123, 0.05);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85em;
-        }
-        
-        .publication-title {
-            font-weight: 500;
+        .research-item p {
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-relaxed);
             color: var(--text-primary);
-            margin-bottom: 5px;
         }
         
-        .publication-details {
-            color: var(--text-secondary);
-        }
-        
-        .publication-type {
-            display: inline-block;
-            background: var(--accent-purple);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 0.7em;
-            margin-left: 10px;
-            text-transform: uppercase;
-        }
-
-        /* Enhanced Publications Styling */
-
-        /* Publication categories */
+        /* Publications with improved readability */
         .publication-category {
             margin-bottom: 40px;
         }
 
         .publication-category-title {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.2em;
+            font-size: var(--font-size-xl); /* Increased from 1.2em */
+            font-weight: 600;
             color: var(--accent-purple);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--accent-purple);
             position: relative;
+            line-height: var(--line-height-tight);
         }
 
         .publication-category-title::before {
@@ -260,18 +277,15 @@
             font-size: 0.9em;
         }
 
-        /* Individual publications - more compact and modern */
         .publication {
-            margin-bottom: 20px;
-            padding: 16px 20px;
+            margin-bottom: 24px; /* Increased spacing */
+            padding: 20px 24px; /* Increased padding */
             background: rgba(255, 255, 255, 0.7);
             border-left: 3px solid var(--accent-green);
             border-radius: 0 6px 6px 0;
             transition: all 0.3s ease;
             position: relative;
             font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 0.9em;
-            line-height: 1.5;
         }
 
         .publication:hover {
@@ -281,30 +295,32 @@
         }
 
         .publication-title {
-            font-weight: 500;
+            font-weight: 600; /* Bolder for better hierarchy */
             color: var(--text-primary);
-            margin-bottom: 8px;
-            font-size: 1em;
-            line-height: 1.4;
+            margin-bottom: 10px;
+            font-size: var(--font-size-lg); /* Increased from 1em */
+            line-height: var(--line-height-normal);
         }
 
         .publication-details {
             color: var(--text-secondary);
-            font-size: 0.85em;
-            line-height: 1.5;
-            margin-bottom: 8px;
+            font-size: var(--font-size-base); /* Increased from 0.85em */
+            line-height: var(--line-height-relaxed);
+            margin-bottom: 16px;
         }
 
         .publication-details em {
             color: var(--accent-purple);
             font-style: italic;
+            font-weight: 500;
         }
 
         .pub-link {
             color: var(--accent-cyan);
             text-decoration: none;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8em;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
         }
 
         .pub-link:hover {
@@ -314,15 +330,15 @@
         /* Publication type badges */
         .publication-type {
             position: absolute;
-            top: 12px;
-            right: 16px;
+            bottom: 16px;
+            right: 20px;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65em;
-            padding: 3px 8px;
-            border-radius: 3px;
+            font-size: var(--font-size-xs);
+            padding: 4px 10px; /* Slightly larger for better readability */
+            border-radius: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Different colors for different publication types */
@@ -331,7 +347,7 @@
             color: white;
         }
 
-        .publication.paper .publication-type {
+        .publication.conference .publication-type {
             background: var(--accent-green);
             color: white;
         }
@@ -351,7 +367,7 @@
             border-left-color: var(--accent-orange);
         }
 
-        .publication.paper {
+        .publication.conference {
             border-left-color: var(--accent-green);
         }
 
@@ -363,70 +379,28 @@
             border-left-color: var(--accent-cyan);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .publication {
-                padding: 12px 16px;
-                margin-bottom: 16px;
-            }
-            
-            .publication-title {
-                font-size: 0.95em;
-                padding-right: 60px; /* Make room for type badge */
-            }
-            
-            .publication-details {
-                font-size: 0.8em;
-            }
-            
-            .publication-type {
-                font-size: 0.6em;
-                padding: 2px 6px;
-            }
-        }
-
-        /* Optional: Add a subtle animation when publications load */
-        .publication {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .publication:nth-child(1) { animation-delay: 0.1s; }
-        .publication:nth-child(2) { animation-delay: 0.2s; }
-        .publication:nth-child(3) { animation-delay: 0.3s; }
-        .publication:nth-child(4) { animation-delay: 0.4s; }
-        .publication:nth-child(5) { animation-delay: 0.5s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-                
-        
-        /* Contact section */
+        /* Contact section with improved readability */
         .contact-info {
             font-family: 'IBM Plex Mono', monospace;
             background: var(--bg-secondary);
             color: var(--bg-primary);
-            padding: 20px;
-            border-radius: 4px;
+            padding: 24px;
+            border-radius: 6px;
+            font-size: var(--font-size-base); /* Increased from smaller size */
+            line-height: var(--line-height-relaxed);
         }
         
         .contact-info::before {
             content: "philip@neurobiopsychology:~$ cat contact.txt";
             display: block;
             color: var(--accent-cyan);
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
         }
         
         .contact-item {
-            margin-bottom: 8px;
+            margin-bottom: 10px; /* Increased spacing */
         }
         
         .contact-item::before {
@@ -434,15 +408,16 @@
             color: var(--accent-orange);
         }
         
-        /* Footer */
+        /* Footer with improved typography */
         .footer {
             text-align: center;
             margin-top: 60px;
             padding: 20px;
             border-top: 1px solid var(--border-color);
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8em;
+            font-size: var(--font-size-sm); /* Increased from 0.8em */
             color: var(--text-secondary);
+            line-height: var(--line-height-normal);
         }
         
         .footer::before {
@@ -459,12 +434,13 @@
             bottom: 20px;
             right: 20px;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7em;
+            font-size: var(--font-size-xs);
             color: var(--text-secondary);
             background: var(--bg-primary);
-            padding: 8px 12px;
+            padding: 10px 14px; /* Increased padding */
             border: 1px solid var(--border-color);
             border-radius: 4px;
+            font-weight: 500;
         }
         
         .status::before {
@@ -472,43 +448,71 @@
             color: var(--accent-green);
         }
         
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid var(--text-secondary);
-            border-radius: 50%;
-            border-top-color: var(--accent-cyan);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Responsive design */
+        /* Responsive improvements */
         @media (max-width: 768px) {
+            body {
+                font-size: var(--font-size-base); /* Slightly smaller on mobile but still readable */
+            }
+            
             .container {
                 padding: 20px 15px;
             }
             
             .header h1 {
-                font-size: 2em;
+                font-size: var(--font-size-3xl); /* Responsive scaling */
+            }
+            
+            .tagline {
+                font-size: var(--font-size-sm);
             }
             
             .nav-links {
                 flex-direction: column;
                 gap: 15px;
+                font-size: var(--font-size-sm);
             }
             
             .section {
                 padding: 20px;
             }
             
+            .section h2 {
+                font-size: var(--font-size-xl);
+            }
+            
+            .research-item h3 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .publication-title {
+                font-size: var(--font-size-base);
+            }
+            
+            .publication-details {
+                font-size: var(--font-size-sm);
+            }
+            
             .status {
                 display: none;
             }
+        }
+        
+        /* Improved contrast and readability tweaks */
+        .publication-category-title,
+        .research-item h3,
+        .section h2 {
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Better spacing for lists if any */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: var(--line-height-relaxed);
         }
     </style>
 </head>

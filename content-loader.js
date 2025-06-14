@@ -19,7 +19,7 @@ class ContentManager {
                 },
                 header: {
                     name: "Philip Sulewski",
-                    tagline: "PhD Student • Vision • Cognition • Computation"
+                    tagline: "Vision • Cognition • Computation"
                 }
             };
         }
@@ -78,11 +78,7 @@ class ContentManager {
     getFallbackContent(section) {
         const fallbacks = {
             about: `
-                <p>I'm a PhD student at the University of Osnabrück, working at the intersection of neuroscience and artificial intelligence. My research focuses on understanding how the human brain solves the exploration-exploitation dilemma in visual information sampling.</p>
-                <div class="about-content">
-                    Currently investigating neural mechanisms of visual attention using MEG, eye-tracking, and computational modeling. Previously worked on individual differences in visual object representations and brain-computer interfaces.
-                    <span class="cursor"></span>
-                </div>
+        
             `,
             research: `
                 <div class="research-item">
@@ -129,16 +125,15 @@ class ContentManager {
         const introParagraph = content.replace(/<p>|<\/p>/g, '').trim();
         
         // Terminal content with ASCII art
-        const terminalContent = `Currently investigating neural mechanisms of visual attention using MEG, eye-tracking, and computational modeling. Previously worked on individual differences in visual object representations and brain-computer interfaces.
-
-        Working on understanding how the brain solves the exploration-exploitation dilemma in visual information sampling during active vision.
+        const terminalContent = `Greetings! I am Philip Sulewski, a PhD student in the Kietzmann Lab at University of Osnabrück, working at the intersection of neuroscience and machine learning. My research focuses on understanding how the human brain solves the exploration-exploitation dilemma in visual information sampling.
+        Currently investigating neural mechanisms of visual attention using MEG, eye-tracking, and computational modeling. Previously worked on individual differences in visual object representations and brain-computer interfaces.
 
         Research interests:
-        • Visual attention & exploration
-        • Neural dynamics of saccadic eye movements  
-        • Predictive coding in active vision
+        • Timing of visual attention
+        • Neural dynamics of active vision 
+        • Predictive computations for visual perception
         • Individual differences in neural representations
-        • Computational modeling of vision `
+        • Computational modeling of visiual intelligence`
 
 
                     

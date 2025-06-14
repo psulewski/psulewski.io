@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Philip Sulewski - NeuroAI Research</title>
+    <title>Philip Sulewski</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
         
@@ -14,7 +14,7 @@
             --text-secondary: #6272a4;
             --accent-purple: #bd93f9;
             --accent-cyan: #8be9fd;
-            --accent-green: #50fa7b;
+            --accent-green: #20bb75;
             --accent-orange: #ffb86c;
             --border-color: #6272a4;
             
@@ -189,7 +189,7 @@
         }
         
         /* About section with better typography */
-        .about-content {
+           .about-content {
             background: var(--bg-secondary);
             color: var(--bg-primary);
             padding: 24px; /* Increased padding */
@@ -200,15 +200,17 @@
             margin-top: 18px;
             position: relative;
             font-weight: 400;
+            white-space: pre-line; /* Preserve line breaks */
         }
         
         .about-content::before {
-            content: "philip@neurobiopsychology:~$ cat about.txt";
+            content: "psulewski@klab:~$ cat about.txt";
             display: block;
             color: var(--accent-green);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             font-size: var(--font-size-sm);
             font-weight: 500;
+            white-space: normal; /* Normal wrapping for the command line */
         }
         
         .cursor {
@@ -391,7 +393,7 @@
         }
         
         .contact-info::before {
-            content: "philip@neurobiopsychology:~$ cat contact.txt";
+            content: "psulewski@klab:~$ cat contact.txt";
             display: block;
             color: var(--accent-cyan);
             margin-bottom: 16px;
@@ -521,7 +523,7 @@
         <header class="header">
             <h1>Philip Sulewski</h1>
             <div class="tagline">
-                PhD Student • <span class="accent-text">NeuroAI Research</span> • University of Osnabrück
+                Vision • <span class="accent-text">Cognition</span> • Computation
             </div>
         </header>
 
@@ -542,7 +544,7 @@
         </section>
 
         <section id="research" class="section">
-            <h2>research_areas</h2>
+            <h2>research</h2>
             <div class="content">
                 <div class="loading"></div> Loading content...
             </div>

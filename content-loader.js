@@ -14,12 +14,12 @@ class ContentManager {
             this.config = {
                 site: {
                     title: "Philip Sulewski",
-                    subtitle: "PhD Student • NeuroAI Research • University of Osnabrück",
+                    subtitle: "Vision • Cognition • Computation",
                     lastUpdated: "2025"
                 },
                 header: {
                     name: "Philip Sulewski",
-                    tagline: "PhD Student • NeuroAI Research • University of Osnabrück"
+                    tagline: "PhD Student • Vision • Cognition • Computation"
                 }
             };
         }
@@ -124,18 +124,35 @@ class ContentManager {
         return fallbacks[section] || '<p>Content not available</p>';
     }
 
-    formatAboutContent(content) {
-        // Special formatting for about section
-        const parts = content.split('## Terminal Content');
-        if (parts.length > 1) {
-            return parts[0] + `
-                <div class="about-content">
-                    ${parts[1].replace(/<p>|<\/p>/g, '').trim()}
-                    <span class="cursor"></span>
-                </div>
-            `;
-        }
-        return content + '<div class="about-content">Loading...<span class="cursor"></span></div>';
+       formatAboutContent(content) {
+        // Get the intro paragraph
+        const introParagraph = content.replace(/<p>|<\/p>/g, '').trim();
+        
+        // Terminal content with ASCII art
+        const terminalContent = `Currently investigating neural mechanisms of visual attention using MEG, eye-tracking, and computational modeling. Previously worked on individual differences in visual object representations and brain-computer interfaces.
+
+        Working on understanding how the brain solves the exploration-exploitation dilemma in visual information sampling during active vision.
+
+        Research interests:
+        • Visual attention & exploration
+        • Neural dynamics of saccadic eye movements  
+        • Predictive coding in active vision
+        • Individual differences in neural representations
+        • Computational modeling of vision `
+
+
+                    
+        
+
+
+     ;
+        
+        return introParagraph + `
+            <div class="about-content">
+                ${terminalContent}
+                <span class="cursor"></span>
+            </div>
+        `;
     }
 
     formatResearchContent(content) {

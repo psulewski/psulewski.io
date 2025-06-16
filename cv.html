@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philip Sulewski - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --bg-primary: #f8f8f2;
+            --bg-secondary: #44475a;
+            --text-primary: #282a36;
+            --text-secondary: #6272a4;
+            --accent-purple: #bd93f9;
+            --accent-cyan: #8be9fd;
+            --accent-green: #20bb75;
+            --accent-orange: #ff8c6c;
+            --border-color: #6272a4;
+            
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-relaxed);
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 30px;
+            border: 2px dashed var(--border-color);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #f0f0eb 100%);
+            position: relative;
+        }
+        
+        .header::before {
+            content: "●";
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: var(--accent-green);
+            font-size: 0.75rem;
+            animation: blink 2s infinite;
+        }
+        
+        .header::after {
+            content: "CV.PDF";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .header h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-3xl);
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .tagline {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .contact-info a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Navigation */
+        .nav {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .nav-links {
+            display: inline-flex;
+            gap: 30px;
+            list-style: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+        
+        .nav-links a::before {
+            content: "> ";
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+        
+        /* CV Sections */
+        .cv-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-left: 3px solid var(--accent-purple);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .cv-section h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        .cv-section h2::before {
+            content: "# ";
+            color: var(--accent-purple);
+        }
+        
+        /* CV Items */
+        .cv-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .cv-item:hover {
+            border-color: var(--accent-cyan);
+            transform: translateX(3px);
+        }
+        
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .cv-item-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--accent-purple);
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .cv-item-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-primary);
+            white-space: nowrap;
+        }
+        
+        .cv-item-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .cv-item-location {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .cv-item-description {
+            color: var(--text-primary);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        /* Education specific styles */
+        .education-item {
+            border-left-color: var(--accent-green);
+        }
+        
+        .education-item .cv-item-title {
+            color: var(--accent-green);
+        }
+        
+        /* Experience specific styles */
+        .experience-item {
+            border-left-color: var(--accent-orange);
+        }
+        
+        .experience-item .cv-item-title {
+            color: var(--accent-orange);
+        }
+        
+        /* Teaching specific styles */
+        .teaching-item {
+            border-left-color: var(--accent-cyan);
+        }
+        
+        .teaching-item .cv-item-title {
+            color: var(--accent-cyan);
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+        }
+        
+        .skill-category h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-purple);
+            margin-bottom: 12px;
+            font-size: var(--font-size-lg);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-sm);
+        }
+        
+        .skill-list li::before {
+            content: "▸ ";
+            color: var(--accent-orange);
+            margin-right: 8px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .footer::before {
+            content: "/* ";
+        }
+        
+        .footer::after {
+            content: " */";
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cv-item-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .cv-item-date {
+                align-self: flex-start;
+                white-space: normal;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Philip Sulewski</h1>
+            <div class="tagline">PhD Student • Vision • Cognition • Computation</div>
+            <div class="contact-info">
+                <div>psulewski@uos.de • University of Osnabrück, Germany</div>
+                <div>Office: IKW Room 50/110 • <a href="https://twitter.com/PhilipSulewski">@PhilipSulewski</a></div>
+            </div>
+        </header>
+
+        <nav class="nav">
+            <ul class="nav-links">
+                <li><a href="#research">research</a></li>
+                <li><a href="#education">education</a></li>
+                <li><a href="#teaching">teaching</a></li>
+                <li><a href="#awards">awards</a></li>
+            </ul>
+        </nav>
+
+        <section id="research" class="cv-section">
+            <h2>research experience</h2>
+            
+            <div class="cv-item experience-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">PhD Student</div>
+                    <div class="cv-item-date">2021 - present</div>
+                </div>
+                <div class="cv-item-subtitle">University of Osnabrück & Max Planck Institute CBS</div>
+                <div class="cv-item-location">Kietzmann Lab • Supervisors: Tim Kietzmann, Peter König, Martin Hebart</div>
+                <div class="cv-item-description">
+                    Neural mechanisms of visual attention and exploration using MEG, eye-tracking, and computational modeling. Leading the Active Visual Semantics Dataset project.
+                </div>
+            </div>
+
+            <div class="cv-item experience-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Research Intern</div>
+                    <div class="cv-item-date">Sep 2018 - Apr 2019</div>
+                </div>
+                <div class="cv-item-subtitle">Brain and Consciousness Lab, École Normale Supérieure Paris</div>
+                <div class="cv-item-location">Supervisor: Prof. Sid Kouider</div>
+                <div class="cv-item-description">
+                    Study of attention, metacognition and perceptual decision making using Brain-Computer-Interfaces (BCI). Investigated neurofeedback-induced choice blindness and the integration of metacognitive and external cues.
+                </div>
+            </div>
+
+            <div class="cv-item experience-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Master Thesis Research</div>
+                    <div class="cv-item-date">Nov 2019 - Nov 2020</div>
+                </div>
+                <div class="cv-item-subtitle">Artificial Cognitive Systems Lab, Donders Institute Nijmegen</div>
+                <div class="cv-item-location">Supervisor: Dr. Tim Kietzmann</div>
+                <div class="cv-item-description">
+                    Investigating interindividual spatiotemporal variability in neural representations during visual object recognition using time-resolved representational similarity analysis.
+                </div>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Student Supervision</div>
+                    <div class="cv-item-date">2021 - 2022</div>
+                </div>
+                <div class="cv-item-description">
+                    <strong>Master theses:</strong> Pieter Barkema (2021), Carmen Amme (2023), Thomas Nortmann (2024) <br>
+                    <strong>Bachelor thesis:</strong> Julia Schäfers (2021), Max Wassermann (2023), Mathilda Buschmann (2024), Nina Thornton (2024) <br>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="cv-section">
+            <h2>education</h2>
+            
+            <div class="cv-item education-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Master of Science Psychology</div>
+                    <div class="cv-item-date">2017 - 2020</div>
+                </div>
+                <div class="cv-item-subtitle">University of Göttingen</div>
+                <div class="cv-item-location">Focus: Cognitive Neuroscience</div>
+                <div class="cv-item-description">
+                    Thesis: "Tracing the individual variability of visual object representations through time and space" (Grade: 1.0, with distinction) • Supervisor: Tim Kietzmann (Donders Institute)
+                </div>
+            </div>
+
+            <div class="cv-item education-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Bachelor of Science Psychology</div>
+                    <div class="cv-item-date">2014 - 2017</div>
+                </div>
+                <div class="cv-item-subtitle">University of Osnabrück</div>
+                <div class="cv-item-description">
+                    Thesis: "Measuring Realities: An EEG study using a Virtual Reality Memory Paradigm" (Grade: 0.7, with distinction) • Supervisor: Thomas Gruber
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching" class="cv-section">
+            <h2>teaching experience</h2>
+            
+            <div class="cv-item teaching-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">The eyes have it - Active vision as a window to mind & brain</div>
+                    <div class="cv-item-date">Summer 2025</div>
+                </div>
+                <div class="cv-item-subtitle">Cognitive Science Programme, University of Osnabrück</div>
+                <div class="cv-item-description">
+                    Course on active vision, eye movements, and their role in understanding cognitive processes and brain function.
+                </div>
+            </div>
+
+            <div class="cv-item teaching-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Projects at the intersection of neuroscience and machine learning</div>
+                    <div class="cv-item-date">Summer 2024, Winter 2024/25, Summer 2025</div>
+                </div>
+                <div class="cv-item-subtitle">Cognitive Science Programme, University of Osnabrück</div>
+                <div class="cv-item-description">
+                    Project-based course combining neuroscience and machine learning approaches to understand brain function.
+                </div>
+            </div>
+
+            <div class="cv-item teaching-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Machine Learning for Cognitive Computational Neuroscience</div>
+                    <div class="cv-item-date">Winter 2022/2023, Winter 2024/2025</div>
+                </div>
+                <div class="cv-item-subtitle">Cognitive Science Programme, University of Osnabrück</div>
+                <div class="cv-item-description">
+                    Graduate-level course covering machine learning applications in computational neuroscience, including neural network architectures and data analysis methods.
+                </div>
+            </div>
+
+            <div class="cv-item teaching-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Research Project Supervision</div>
+                    <div class="cv-item-date">Winter 2019/2020</div>
+                </div>
+                <div class="cv-item-subtitle">University of Göttingen</div>
+                <div class="cv-item-description">
+                    Graduate teaching assistance for undergraduate research projects. Content: experimental design, programming of psychophysical experiments, data analysis and presentation.
+                </div>
+            </div>
+
+            <div class="cv-item teaching-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Perception, Emotion and Cognition</div>
+                    <div class="cv-item-date">Summer 2019</div>
+                </div>
+                <div class="cv-item-subtitle">University of Göttingen</div>
+                <div class="cv-item-description">
+                    Graduate teaching assistance for introductory course in experimental psychology, covering fundamental principles of perception and cognition.
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="cv-section">
+            <h2>awards & scholarships</h2>
+            
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Max-Planck School for Cognition</div>
+                    <div class="cv-item-date">2023</div>
+                </div>
+                <div class="cv-item-description">
+                    Associate Doctorate Fellowship (full position)
+                </div>
+            </div>
+            
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Studienstiftung des deutschen Volkes</div>
+                    <div class="cv-item-date">2021 - 2023</div>
+                </div>
+                <div class="cv-item-description">
+                    PhD scholarship from the German Academic Scholarship Foundation
+                </div>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Hans-Böckler-Stiftung Scholarship</div>
+                    <div class="cv-item-date">2015 - 2020</div>
+                </div>
+                <div class="cv-item-description">
+                    Full scholarship for psychology studies including travel grants for international research
+                </div>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <div class="cv-item-title">Ingeborg- und Dr. H. Jürgen Tiemann-Mobilitätsstipendium</div>
+                    <div class="cv-item-date">2022</div>
+                </div>
+                <div class="cv-item-description">
+                    Research mobility grant for MEG study at Max Planck Institute Leipzig
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Last updated: June 2025 • Built with semantic HTML and retro styling
+        </footer>
+    </div>
+</body>
+</html>

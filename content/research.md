@@ -4,7 +4,7 @@ Understanding visual intelligence in action requires bridging low-level perceptu
 
 The dataset includes MEG and eye-tracking data from 5 participants freely viewing 4,080 natural scenes over 50+ hours of recording, yielding over 200,000 gaze events. Each participant was fitted with individually manufactured head stabilizers to ensure data quality across 10 sessions. Following exploration of selected scenes, participants provided verbal scene descriptions in German, which were transcribed and are available as part of the dataset. All scenes are compatible with the Natural Scenes Dataset (Allen et al., 2022) and selected with a semantically-balanced sampling approach. A team effort with Carmen Amme, Martin Hebart, Peter König & Tim Kietzmann 
 
-## The saccades have it: The surprising timing of neural dynamics during active vision
+## The saccades have it: The surprising timing of neural dynamics in active vision
 
 Most studies of active vision assume that visual processing stages are initiated at fixation onset, equivalent to stimulus onset in static-viewing paradigms. Together with Carmen Amme and the team behind the AVS-Dataset, I challange this assumption.
 

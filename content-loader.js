@@ -157,11 +157,10 @@ class ContentManager {
         Currently investigating neural mechanisms of visual attention using MEG, eye-tracking, and computational modeling. Previously worked on individual differences in visual object representations and brain-computer interfaces.
 
         Research interests:
-        • Timing of visual attention
         • Neural dynamics of active vision 
         • Predictive computations for visual perception
         • Individual differences in neural representations
-        • Computational modeling of visiual intelligence`
+        • Computational modeling of visual intelligence`
 
 
                     

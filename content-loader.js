@@ -37,52 +37,71 @@ class ContentManager {
         }
     }
 
-    parseMarkdown(markdown) {
+   parseMarkdown(markdown) {
         // Remove code block markers if present
         markdown = markdown.replace(/^```markdown\s*\n?/gm, '').replace(/^```\s*$/gm, '');
         
-        // First, parse links to preserve them during other transformations
-        markdown = markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        // Parse markdown line by line to handle lists with links properly
+        let lines = markdown.split('\n');
+        let html = '';
+        let inList = false;
         
-        // Parse markdown with proper HTML structure
-        let html = markdown
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i].trim();
+            
+            if (!line) {
+                if (inList) {
+                    html += '</ul>\n';
+                    inList = false;
+                }
+                html += '\n';
+                continue;
+            }
+            
             // Headers
-            .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-            .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-            .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-            // Bold and italic (but skip content inside <a> tags)
-            .replace(/\*\*([^*]+)\*\*/g, (match, p1) => {
-                if (match.includes('<a href=')) return match;
-                return '<strong>' + p1 + '</strong>';
-            })
-            .replace(/\*([^*]+)\*/g, (match, p1) => {
-                if (match.includes('<a href=')) return match;
-                return '<em>' + p1 + '</em>';
-            })
-            // Lists
-            .replace(/^- (.+)$/gm, '<li>$1</li>');
-
-        // Split into paragraphs and process
-        html = html.split('\n\n')
-            .map(paragraph => {
-                paragraph = paragraph.trim();
-                if (!paragraph) return '';
-                if (paragraph.startsWith('<h') || paragraph.startsWith('<li')) {
-                    return paragraph;
+            if (line.startsWith('### ')) {
+                if (inList) { html += '</ul>\n'; inList = false; }
+                html += '<h3>' + line.substring(4) + '</h3>\n';
+            } else if (line.startsWith('## ')) {
+                if (inList) { html += '</ul>\n'; inList = false; }
+                html += '<h2>' + line.substring(3) + '</h2>\n';
+            } else if (line.startsWith('# ')) {
+                if (inList) { html += '</ul>\n'; inList = false; }
+                html += '<h1>' + line.substring(2) + '</h1>\n';
+            }
+            // List items
+            else if (line.startsWith('- ')) {
+                if (!inList) {
+                    html += '<ul>\n';
+                    inList = true;
                 }
-                if (paragraph.includes('<li>')) {
-                    return '<ul>' + paragraph + '</ul>';
-                }
-                return '<p>' + paragraph.replace(/\n/g, '<br>') + '</p>';
-            })
-            .join('\n');
-
-        // Clean up list formatting
-        html = html.replace(/<\/li>\n<li>/g, '</li><li>');
-        html = html.replace(/<li>/g, '<ul><li>').replace(/<\/li>(?!\s*<li>)/g, '</li></ul>');
-        html = html.replace(/<\/ul>\s*<ul>/g, '');
-
-        return html;
+                let listContent = line.substring(2);
+                // Process links in list content
+                listContent = listContent.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+                // Process bold and italic
+                listContent = listContent.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                listContent = listContent.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+                html += '<li>' + listContent + '</li>\n';
+            }
+            // Regular paragraphs
+            else {
+                if (inList) { html += '</ul>\n'; inList = false; }
+                let content = line;
+                // Process links
+                content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+                // Process bold and italic
+                content = content.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                content = content.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+                html += '<p>' + content + '</p>\n';
+            }
+        }
+        
+        // Close any remaining list
+        if (inList) {
+            html += '</ul>\n';
+        }
+        
+        return html.trim();
     }
     getFallbackContent(section) {
         const fallbacks = {

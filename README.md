@@ -3,7 +3,7 @@
 A minimalist retro-inspired academic website built with semantic HTML and modular content management.
 
 ## 🚀 Live Site
-Visit: [https://psulewski.github.io](https://psulewski.github.io)
+Visit: [https://psulewski.de](https://psulewski.de)
 
 ## 📝 Updating Content
 To update the website content:
@@ -21,3 +21,4 @@ To update the website content:
 - `index.html` - Main website file
 - `content/` - Markdown content files
 - `_config.yml` - GitHub Pages configuration
+- `cv.html` - CV page

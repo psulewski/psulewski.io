@@ -41,19 +41,29 @@ class ContentManager {
         // Remove code block markers if present
         markdown = markdown.replace(/^```markdown\s*\n?/gm, '').replace(/^```\s*$/gm, '');
         
+        // First, parse links to preserve them during other transformations
+        markdown = markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        
         // Parse markdown with proper HTML structure
         let html = markdown
             // Headers
             .replace(/^### (.+)$/gm, '<h3>$1</h3>')
             .replace(/^## (.+)$/gm, '<h2>$1</h2>')
             .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-            // Bold and italic
-            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            // Bold and italic (but skip content inside <a> tags)
+            .replace(/\*\*([^*]+)\*\*/g, (match, p1) => {
+                if (match.includes('<a href=')) return match;
+                return '<strong>' + p1 + '</strong>';
+            })
+            .replace(/\*([^*]+)\*/g, (match, p1) => {
+                if (match.includes('<a href=')) return match;
+                return '<em>' + p1 + '</em>';
+            })
             // Lists
-            .replace(/^- (.+)$/gm, '<li>$1</li>')
-            // Paragraphs (split by double newlines)
-            .split('\n\n')
+            .replace(/^- (.+)$/gm, '<li>$1</li>');
+
+        // Split into paragraphs and process
+        html = html.split('\n\n')
             .map(paragraph => {
                 paragraph = paragraph.trim();
                 if (!paragraph) return '';
@@ -74,7 +84,6 @@ class ContentManager {
 
         return html;
     }
-
     getFallbackContent(section) {
         const fallbacks = {
             about: `
